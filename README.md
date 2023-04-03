@@ -11,8 +11,8 @@ pip install dist/privatejet-0.0.1-py3-none-any.whl
 ## Usage
 
 ```python
-from private_jet.main import PrivateJet
-from private_jet.router import JetRouter
+from privatejet.main import PrivateJet
+from privatejet.router import JetRouter
 
 
 class UserRouter(JetRouter):
