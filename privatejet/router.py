@@ -1,3 +1,6 @@
+import json
+
+
 class JetRouter:
     def __init__(self, send):
         self.send = send
@@ -15,6 +18,6 @@ class JetRouter:
         await self.send(
             {
                 "type": "http.response.body",
-                "body": str(message).encode(),
+                "body": json.dumps(message).encode(),
             }
         )
