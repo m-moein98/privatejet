@@ -29,8 +29,9 @@ class PrivateJet:
                     "path": scope["path"],
                     "query_string": scope["query_string"],
                     "headers": scope["headers"],
-                    "body": await self.read_body(receive)
                 }
+                if request["method"] in ["POST", "PUT", "PATCH"]:
+                    request["body"] = await self.read_body(receive)
                 match scope["method"]:
                     case "GET":
                         if route == router["prefix"] or route == router["prefix"] + "/":
