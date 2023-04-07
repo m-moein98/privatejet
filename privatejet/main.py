@@ -36,7 +36,8 @@ class PrivateJet:
                     case "GET":
                         if route == router["prefix"] or route == router["prefix"] + "/":
                             await router["router"](send).get(request)
-                        await router["router"](send).get_one(request)
+                        else:
+                            await router["router"](send).get_one(request)
                     case "POST":
                         await router["router"](send).post(request)
                     case "PUT":
