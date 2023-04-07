@@ -23,7 +23,7 @@ class PrivateJet:
         assert scope["type"] == "http"
         route = scope["path"]
         for router in self.routers:
-            if str(route).startswith(router["prefix"]):
+            if route == router["prefix"] or route == router["prefix"] + "/" or route.startswith(router["prefix"] + "/"):
                 request = {
                     "method": scope["method"],
                     "path": scope["path"],
@@ -32,20 +32,25 @@ class PrivateJet:
                 }
                 if request["method"] in ["POST", "PUT", "PATCH"]:
                     request["body"] = await self.read_body(receive)
-                match scope["method"]:
-                    case "GET":
-                        if route == router["prefix"] or route == router["prefix"] + "/":
-                            await router["router"](send).get(request)
-                        else:
-                            await router["router"](send).get_one(request)
-                    case "POST":
-                        await router["router"](send).post(request)
-                    case "PUT":
-                        await router["router"](send).put(request)
-                    case "PATCH":
-                        await router["router"](send).patch(request)
-                    case "DELETE":
-                        await router["router"](send).delete(request)
+                try:
+                    match scope["method"]:
+                        case "GET":
+                            if route == router["prefix"] or route == router["prefix"] + "/":
+                                await router["router"](send).get(request)
+                            else:
+                                await router["router"](send).get_one(request)
+                        case "POST":
+                            await router["router"](send).post(request)
+                        case "PUT":
+                            await router["router"](send).put(request)
+                        case "PATCH":
+                            await router["router"](send).patch(request)
+                        case "DELETE":
+                            await router["router"](send).delete(request)
+                except AttributeError:
+                    await router["router"](send).unsupported_method()
+            else:
+                await router["router"](send).not_found()
 
     async def add_router(self, router):
         if router["prefix"] not in [
