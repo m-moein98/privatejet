@@ -11,7 +11,8 @@ class JetRouter:
                 "type": "http.response.start",
                 "status": 200,
                 "headers": [
-                    [b"content-type", b"text/plain"],
+                    [b"content-type", b"application/json"],
+                    [b"access-control-allow-origin", b"*"],
                 ],
             }
         )
@@ -28,7 +29,8 @@ class JetRouter:
                 "type": "http.response.start",
                 "status": 404,
                 "headers": [
-                    [b"content-type", b"text/plain"],
+                    [b"content-type", b"application/json"],
+                    [b"access-control-allow-origin", b"*"],
                 ],
             }
         )
@@ -45,7 +47,8 @@ class JetRouter:
                 "type": "http.response.start",
                 "status": 405,
                 "headers": [
-                    [b"content-type", b"text/plain"],
+                    [b"content-type", b"application/json"],
+                    [b"access-control-allow-origin", b"*"],
                 ],
             }
         )
@@ -62,7 +65,8 @@ class JetRouter:
                 "type": "http.response.start",
                 "status": 500,
                 "headers": [
-                    [b"content-type", b"text/plain"],
+                    [b"content-type", b"application/json"],
+                    [b"access-control-allow-origin", b"*"],
                 ],
             }
         )
