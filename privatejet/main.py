@@ -3,6 +3,7 @@ import json
 
 class PrivateJet:
     routers = []
+    middlewares = []
 
     async def read_body(self, receive):
         """
@@ -33,6 +34,11 @@ class PrivateJet:
                 if request["method"] in ["POST", "PUT", "PATCH"]:
                     request["body"] = await self.read_body(receive)
                 try:
+                    for middleware in self.middlewares:
+                        try:
+                            await middleware()(scope, receive, send)
+                        except Exception:
+                            await router["router"](send).middleware_error()
                     match scope["method"]:
                         case "GET":
                             if route == router["prefix"] or route == router["prefix"] + "/":
@@ -62,3 +68,7 @@ class PrivateJet:
                     "router": router["router"]
                 }
             )
+
+    async def add_middleware(self, middleware_class):
+        if middleware_class not in self.middlewares:
+            self.middlewares.append(middleware_class)

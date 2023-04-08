@@ -55,3 +55,20 @@ class JetRouter:
                 "body": b"Method Not Allowed",
             }
         )
+
+    async def middleware_error(self):
+        await self.send(
+            {
+                "type": "http.response.start",
+                "status": 500,
+                "headers": [
+                    [b"content-type", b"text/plain"],
+                ],
+            }
+        )
+        await self.send(
+            {
+                "type": "http.response.body",
+                "body": b"Middleware Error"
+            }
+        )
