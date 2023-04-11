@@ -14,7 +14,7 @@ setup(
   description='',
   long_description=open('README.md').read() + '\n\n' + open('CHANGELOG.txt').read(),
   long_description_content_type="text/markdown",
-  url='',  
+  url='https://privatejet.readthedocs.io/en/latest/',  
   author='m-moein-98',
   author_email='moein1475963.mmz@gmail.com',
   license='OSI Approved :: MIT License', 
