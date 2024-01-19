@@ -7,7 +7,7 @@ This is a python backend framework for building REST applications. It is built o
 poetry install
 poetry shell
 python setup.py bdist_wheel
-pip install dist/privatejet-0.0.1-py3-none-any.whl
+pip install dist/privatejet-0.0.3-py3-none-any.whl
 ```
 
 ## Usage
