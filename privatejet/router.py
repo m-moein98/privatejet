@@ -1,11 +1,26 @@
+"""
+JetRouter is a class that handles the response of the request.
+"""
+
 import json
+from typing import Callable
 
 
 class JetRouter:
-    def __init__(self, send):
+    """
+    JetRouter is a class that handles the response of the request.
+    """
+
+    def __init__(self, send: Callable) -> None:
+        """
+        Initializes the JetRouter class.
+        """
         self.send = send
 
-    async def send_message(self, message: str):
+    async def send_message(self, message: dict[str] | list[str | dict]) -> None:
+        """
+        Sends a message to the client.
+        """
         await self.send(
             {
                 "type": "http.response.start",
@@ -23,7 +38,10 @@ class JetRouter:
             }
         )
 
-    async def not_found(self):
+    async def not_found(self) -> None:
+        """
+        Sends a 404 Not Found response.
+        """
         await self.send(
             {
                 "type": "http.response.start",
@@ -41,7 +59,10 @@ class JetRouter:
             }
         )
 
-    async def unsupported_method(self):
+    async def unsupported_method(self) -> None:
+        """
+        Sends a 405 Method Not Allowed response.
+        """
         await self.send(
             {
                 "type": "http.response.start",
@@ -59,7 +80,10 @@ class JetRouter:
             }
         )
 
-    async def middleware_error(self):
+    async def middleware_error(self) -> None:
+        """
+        Sends a 500 Internal Server Error response.
+        """
         await self.send(
             {
                 "type": "http.response.start",
@@ -70,9 +94,4 @@ class JetRouter:
                 ],
             }
         )
-        await self.send(
-            {
-                "type": "http.response.body",
-                "body": b"Middleware Error"
-            }
-        )
+        await self.send({"type": "http.response.body", "body": b"Middleware Error"})

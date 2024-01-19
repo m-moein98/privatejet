@@ -1,0 +1,36 @@
+[tool.poetry]
+name = "privatejet"
+version = "0.0.3"
+description = "This is a python backend framework for building REST applications. It is built on top of the ASGI specification and uses the uvicorn server."
+authors = ["m-moein98 <moein1475963.mmz@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+flake8 = "^7.0.0"
+ruff = "^0.1.13"
+black = "^23.12.1"
+isort = "^5.13.2"
+pre-commit = "^3.6.0"
+mypy = "^1.8.0"
+stubs = "^1.0.0"
+setuptools = "^69.0.3"
+wheel = "^0.42.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+line-length = 88
+
+exclude = ["docs"]
+
+[tool.pylint.messages_control]
+max-line-length = 88
+
+[tool.mypy]
+strict = true
+disable_error_code = ["type-arg"]
