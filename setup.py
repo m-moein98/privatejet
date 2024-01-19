@@ -20,6 +20,7 @@ setup(
     name="privatejet",
     version="0.0.3",
     description="",
+    entry_points={"console_scripts": ["privatejet=privatejet.cli:main"]},
     long_description=readme + "\n\n" + change_log,
     long_description_content_type="text/markdown",
     url="https://privatejet.readthedocs.io/en/latest/",
