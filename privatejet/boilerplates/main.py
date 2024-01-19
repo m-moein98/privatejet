@@ -1,18 +1,3 @@
-## Description
-
-This is a python backend framework for building REST applications. It is built on top of the ASGI specification and uses the uvicorn server.
-## Installation
-
-```bash
-poetry install
-poetry shell
-python setup.py bdist_wheel
-pip install dist/privatejet-0.0.3-py3-none-any.whl
-```
-
-## Usage
-
-```python
 """
 This is an example of how to use PrivateJet.
 """
@@ -114,9 +99,3 @@ class UserRouter(JetRouter):
                 "message": "User deleted successfully",
             }
         )
-
-```
-
-## License
-
-This project is licensed under the terms of the MIT license.

@@ -24,5 +24,6 @@ Welcome to PrivateJet's documentation!
    gettingstarted
    router
    middlewares
+   cli
 
 
